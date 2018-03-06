@@ -15,7 +15,6 @@ function counter(state=0,action){
 }
 //新建store
 const store=createStore(counter)
-
 const init =store.getState()
 function listener(){
     const current=store.getState()
