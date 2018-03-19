@@ -10,8 +10,9 @@ import {addGun,delGun,addGunsettime} from './redux' ;
 // App=connect(mapStatetoProps,actionCreators)(App)
 
 @connect(
-    state=>({num:state})
-    ,{addGun,delGun,addGunsettime})
+    state=>({num:state.counter})
+    ,{addGun,delGun,addGunsettime}
+)
 
 class App extends React.Component{
     render(){

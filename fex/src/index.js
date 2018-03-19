@@ -3,25 +3,33 @@ import ReactDom from 'react-dom'
 import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
-
-import App from "./App.js"
-import {counter} from './redux'
-
-
-const store=createStore(counter,
+import {BrowserRouter,Route,Redirect,Switch} from 'react-router-dom'
+// import {counter} from './redux'
+import reducers from './reducer'
+import Auth from './Auth'
+import Brower from './Brower'
+const store=createStore(reducers,
     compose(applyMiddleware(thunk),
     window.devToolsExtension?window.devToolsExtension:f=>f
 ))
+    // 登录控制
+    //     未登录，跳转至登录
+    // 登录跳转至相应页面    
 
-function render(){
-   
     ReactDom.render(
         <Provider store={store}>
-             <App />   
+            <BrowserRouter>
+                <div>
+                    <Switch>
+                        <Route path='/login'  component={Auth}></Route>
+                        <Route path='/brower'  component={Brower}></Route>
+                        <Redirect to='/brower'></Redirect>
+                    </Switch>
+                   
+                   
+                </div>
+            </BrowserRouter> 
         </Provider>
     ,
     document.getElementById('root'))
-}
-render()
 
-store.subscribe(render)

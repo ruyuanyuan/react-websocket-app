@@ -1,13 +1,13 @@
 const ADD_Gun="加机关枪";
 const DEL_Gun="减机关枪";
-export function counter(state=0,action){
+export function counter(state=10,action){
     switch(action.type){
         case ADD_Gun:
             return state+1
         case DEL_Gun:
             return state-1
         default:    
-            return 10        
+            return state        
     }
 }
 export function addGun(){
