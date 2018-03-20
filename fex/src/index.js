@@ -4,6 +4,8 @@ import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 import {BrowserRouter,Route,Redirect,Switch} from 'react-router-dom'
+import './config'
+
 // import {counter} from './redux'
 import reducers from './reducer'
 import Auth from './Auth'
@@ -25,7 +27,6 @@ const store=createStore(reducers,
                         <Route path='/brower'  component={Brower}></Route>
                         <Redirect to='/brower'></Redirect>
                     </Switch>
-                   
                    
                 </div>
             </BrowserRouter> 
