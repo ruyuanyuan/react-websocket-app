@@ -3,16 +3,22 @@ import ReactDom from 'react-dom'
 import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
-import {BrowserRouter,Route,Redirect,Switch} from 'react-router-dom'
-import './config'
+import {BrowserRouter,Route,Switch} from 'react-router-dom'
 
-// import {counter} from './redux'
+import './config'
 import reducers from './reducer'
-import Auth from './Auth'
-import Brower from './Brower'
-const store=createStore(reducers,
+
+import Login from './content/login/login'
+import Register from './content/register/register'
+import AuthRoute from './content/authroute/authroute'
+import BossInfo from './content/bossinfo/bossinfo'
+import GeniusInfo from './content/geniusinfo/geniusinfo'
+import Layout from './content/layout/layout'
+import Chat from './content/chat/chat'
+import './index.css'
+const store=createStore( reducers ,
     compose(applyMiddleware(thunk),
-    window.devToolsExtension?window.devToolsExtension:f=>f
+    window.devToolsExtension?window.devToolsExtension():f=>f
 ))
     // 登录控制
     //     未登录，跳转至登录
@@ -22,12 +28,16 @@ const store=createStore(reducers,
         <Provider store={store}>
             <BrowserRouter>
                 <div>
-                    <Switch>
-                        <Route path='/login'  component={Auth}></Route>
-                        <Route path='/brower'  component={Brower}></Route>
-                        <Redirect to='/brower'></Redirect>
-                    </Switch>
-                   
+                        <AuthRoute></AuthRoute>
+                        <Switch>
+                            <Route path='/bossinfo' component={BossInfo}></Route>
+                            <Route path='/geniusinfo' component={GeniusInfo}></Route>
+                            <Route path='/login' component={Login}></Route>
+                            <Route path='/register' component={Register}></Route>
+                            <Route path='/chat/:user' component={Chat}></Route>
+                            <Route   component={Layout}></Route>
+                        </Switch>
+                        
                 </div>
             </BrowserRouter> 
         </Provider>

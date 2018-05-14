@@ -1,5 +1,6 @@
 //合并所有的 reducer
 import {combineReducers} from 'redux'
-import {counter} from './redux'
-import {auth} from './Auth.redux'
-export default combineReducers({counter,auth})
+import {user} from './redux/user.redux'
+import {chatuser} from './redux/chatuser.redux'
+import {chat} from './redux/chat.redux'
+export default combineReducers({ user,chatuser,chat})
